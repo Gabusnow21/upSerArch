@@ -10,13 +10,12 @@
         <div class="flex gap-2">
             <input
                 type="text"
-                name="codigo"
+                name="q"
                 placeholder="Código del archivo"
                 class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 hx-get="/search"
                 hx-trigger="keyup changed delay:300ms"
                 hx-target="#search-results"
-                hx-vals='{"q": event.target.value}'
             >
         </div>
         <div id="search-results" class="mt-4"></div>

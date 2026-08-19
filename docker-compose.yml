@@ -6,6 +6,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
+      - ./app:/code/app
       - uploads_data:/app/uploads
       - db_data:/app/data
     networks:
