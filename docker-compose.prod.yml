@@ -7,18 +7,17 @@ services:
       - uploads_data:/app/uploads
       - db_data:/app/data
     networks:
-      - web
+      - proxy-network
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.upserarch.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.upserarch.entrypoints=websecure"
-      - "traefik.http.routers.upserarch.tls.certresolver=cloudflare"
+      - "traefik.http.routers.upserarch.entrypoints=web"
       - "traefik.http.services.upserarch.loadbalancer.server.port=8000"
     expose:
       - "8000"
 
 networks:
-  web:
+  proxy-network:
     external: true
 
 volumes:
