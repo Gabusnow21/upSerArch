@@ -1,0 +1,14 @@
+Actúa como un desarrollador experto en Python, FastAPI, HTMX, Tailwind CSS y Docker.
+Quiero construir una aplicación web minimalista y robusta para mi homelab que me permita subir archivos PDF y descargarlos mediante un código único integrado en su nombre o sistema. La aplicación se ejecutará en Docker tanto para despliegue como para desarrollo local ya que no tengo instalado el entorno en mi pc, estará orquestada con Traefik y se expondrá a internet mediante un túnel de Cloudflare.
+Por favor, ayúdame a estructurar el proyecto desde cero generando los siguientes archivos esenciales:
+ • genera un esqueleto la estructura de carpetas y archivos.
+ * docker-compose.yml: Configurado para levantar FastAPI junto con las etiquetas de Traefik necesarias para el enrutamiento de red.
+ * Dockerfile: Optimizado para Python/FastAPI, asegurando que incluya las dependencias necesarias.
+ * requirements.txt: Con las librerías base (FastAPI, Uvicorn, Jinja2, AIOFiles, etc.).
+ * main.py: El núcleo de FastAPI con las siguientes rutas básicas implementadas:
+   * GET /: Una página principal con un buscador por código y un formulario simple para subir nuevos PDFs (arrastrar/seleccionar archivo + asignar código).
+   * POST /upload: Lógica para recibir el PDF, validar el código único, guardarlo en una carpeta persistente montada como volumen de Docker (ej. /app/uploads) y registrar los metadatos.
+   * GET /d/{codigo}: Ruta limpia para buscar el archivo por su código y servirlo directamente para su descarga.
+ * templates/index.html: Una plantilla HTML usando Tailwind CSS (vía CDN para empezar rápido) y HTMX para hacer que la subida de archivos y la búsqueda de códigos sean dinámicas (sin recargar la página completa).
+
+Genera las fases de desarrollo que se desarrollen por ramas y que se integren usando buenas practicas para tests, develop, production, estructura las tareas por commits usando conventional commits y agregalos a un .md donde se encuentren los commits para integrarlos manualmente a un repositorio de git. Además documenta en el readme el desarrollo y la implementación.

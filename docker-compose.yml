@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - uploads_data:/app/uploads
+      - db_data:/app/data
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.upserarch.rule=Host(`${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.upserarch.entrypoints=websecure"
+      - "traefik.http.routers.upserarch.tls=true"
+      - "traefik.http.services.upserarch.loadbalancer.server.port=8000"
+    expose:
+      - "8000"
+
+networks:
+  web:
+    external: true
+
+volumes:
+  uploads_data:
+  db_data:
